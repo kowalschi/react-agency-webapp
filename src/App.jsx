@@ -1,0 +1,60 @@
+import { BrowserRouter, Route, Routes } from 'react-router';
+import { ToastContainer } from 'react-toastify';
+import { Comanda } from './features/Comanda/Comanda';
+import { Mainpage } from './features/Mainpage/Mainpage';
+import { Login } from './features/Auth/Login';
+import { Register } from './features/Auth/Register';
+import { Profile } from './features/Auth/Profile';
+import { Nav } from './components/Nav/Nav';
+import { AuthContextProvider } from './features/Auth/AuthContext';
+
+// import { BoardgameList } from './features/Boardgames/BoardgameList';
+// import { BoardgameDetails } from './features/Boardgames/BoardgameDetails';
+// import { BoardgameAdd } from './features/Boardgames/BoardgameAdd';
+// import { BoardgameEdit } from './features/Boardgames/BoardgameEdit';
+
+import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute';
+
+
+import './App.css';
+//*element={<h1>Homepage</h1>} */
+export function App() {
+  // const [orders, setOrders] = useState([]); 
+  return (
+    <BrowserRouter>
+      <AuthContextProvider>
+        <Nav />
+        <Routes>
+          <Route path="/"
+            element={
+              <Mainpage />
+            }
+          />
+          <Route
+            path="comanda"
+            element={
+              <ProtectedRoute>
+                {/* <Comanda orders={orders} setOrders={setOrders} /> */}
+                <Comanda />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route
+            path="profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="*" element={<h1>404 Not Found</h1>} />
+        </Routes>
+
+        <ToastContainer />
+      </AuthContextProvider>
+    </BrowserRouter>
+  );
+}
