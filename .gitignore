@@ -25,3 +25,8 @@ dist-ssr
 
 .history/
 *.code-workspace
+
+# local environment
+.env
+.env.*
+!.env.example

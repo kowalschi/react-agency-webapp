@@ -22,6 +22,7 @@ React 19 · Vite · React Router · Zod · React Modal · React Toastify · CSS 
 
 ```bash
 npm install
+cp .env.example .env   # API address used by the app
 npm run server   # mock API on http://localhost:3000
 npm run dev      # app on http://localhost:5173
 ```
